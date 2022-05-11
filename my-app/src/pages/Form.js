@@ -5,12 +5,12 @@ import {
   Center,
   Button,
   Image,
-  Text,
   Stack,
   Checkbox,
   Radio,
   RadioGroup,
 } from '@chakra-ui/react';
+import swal from 'sweetalert';
 
 const Form = () => {
   const [sukaKopi, setSukaKopi] = useState();
@@ -20,11 +20,10 @@ const Form = () => {
   const [mood, setMood] = useState();
   const [waktu, setWaktu] = useState('');
 
-  const handleSubmit = event => {
+  const handleSubmit = async event => {
     event.preventDefault();
-
     if (!sukaKopi) {
-      alert('Menu rekomendasi : menu non-kopi');
+      swal('Menu Rekomendasi', 'Menu Non-Kopi!');
     } else {
       setQuestion(true);
     }
@@ -70,22 +69,23 @@ const Form = () => {
     // rule set 1
     if (sukaManis === 'ya') {
       if (mood) {
-        alert('Kopi Susu');
+        swal('Menu Rekomendasi', 'Kopi Susu!');
       } else {
-        if (waktu === 'pagi') alert('Vanilla Latte');
-        else if (waktu === 'sore') alert('Caramel Latte');
-        else if (waktu === 'malam') alert('Caramel Macchiato');
+        if (waktu === 'pagi') swal('Menu Rekomendasi', 'Vanilla Latte!');
+        else if (waktu === 'sore') swal('Menu Rekomendasi', 'Caramel Latte!');
+        else if (waktu === 'malam')
+          swal('Menu Rekomendasi', 'Caramel Macchiato!');
       }
     } else if (sukaManis === 'sedang') {
       if (mood) {
-        if (waktu === 'pagi') alert('Kopi Soklat');
+        if (waktu === 'pagi') swal('Menu Rekomendasi', 'Kopi Soklat!');
       } else if (!mood) {
-        if (waktu === 'pagi') alert('Americano');
+        if (waktu === 'pagi') swal('Menu Rekomendasi', 'Americano!');
       }
-      if (waktu === 'sore') alert('Vanilla Latte');
-      else if (waktu === 'malam') alert('Kopi Susu');
+      if (waktu === 'sore') swal('Menu Rekomendasi', 'Vanilla Latte!');
+      else if (waktu === 'malam') swal('Menu Rekomendasi', 'Kopi Susu!');
     } else if (sukaManis === 'tidak') {
-      alert('Americano');
+      swal('Menu Rekomendasi', 'Americano!');
     }
   };
 
